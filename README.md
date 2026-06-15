@@ -34,8 +34,7 @@ This project provides a private, self-hosted VPN solution using Headscale and Do
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repository-url>
-cd <your-repository-name>
+git clone https://github.com/papinashvilisergi/secure-mesh-vpn.git
 ```
 
 ### 2. Create Required Directories
