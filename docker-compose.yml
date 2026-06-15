@@ -1,0 +1,31 @@
+services:
+  headscale:
+    image: headscale/headscale:latest
+    container_name: headscale
+    user: root
+    volumes:
+      - ./config:/etc/headscale
+      - ./data:/var/lib/headscale
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+      - "50443:50443"
+    # აქ დავტოვეთ მხოლოდ 'serve' და სწორი დროშა '-c'
+    command: serve -c /etc/headscale/config.yaml
+    networks:
+      - headscale-net
+    restart: always
+
+  client:
+    image: alpine:latest
+    container_name: alpine-client
+    command: tail -f /dev/null
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - headscale-net
+    restart: always
+
+networks:
+  headscale-net:
+    driver: bridge
